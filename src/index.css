@@ -1,0 +1,265 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #000;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Green gradient background from images */
+  background: linear-gradient(180deg, #34d399 0%, #a7f3d0 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reusable Classes */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title-text {
+  font-family: "Times New Roman", Times, serif; /* Matching the serif look */
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: black;
+  text-align: center;
+}
+
+.subtitle-text {
+    font-family: sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    font-size: 1rem;
+    margin-top: -1.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px; /* Pill shape */
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: #d1d5db; /* Light grey */
+  color: #000;
+}
+.btn-primary:hover {
+  background: #9ca3af;
+}
+
+.btn-gold {
+  /* Gradient for "Continue" button */
+  background: linear-gradient(90deg, #fcd34d 0%, #ca8a04 100%);
+  color: #000;
+}
+
+/* Inputs */
+.input-field {
+  width: 100%;
+  max-width: 300px;
+  background: rgba(229, 231, 235, 0.8); /* Light grey transparent */
+  border: none;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #000;
+  outline: none;
+  text-align: center; /* Centered text as per mockup */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.input-field::placeholder {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* Layout Utilities */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.icon-box {
+  background: white;
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.icon-box:hover {
+  transform: translateY(-2px);
+}
+
+.splash-border {
+  border: 1px solid #3b82f6; /* Blue border from mockup */
+  padding: 40px;
+  width: 80%;
+  max-width: 400px;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Chat Specific Styles */
+.panel-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.chat-area-header {
+  position: absolute;
+  top: 60px;
+  left: 100px;
+}
+
+.chat-bubble-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+.chat-bubble {
+    background: rgba(229, 231, 235, 0.8);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 400px;
+    height: 250px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: #6b7280;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.send-btn-container {
+    display: flex;
+    justify-content: flex-end; /* Or center? Mockup put it below bubble to the right aligned with bubble edge? */
+    /* Looking at image 3: bubble is somewhat centered. button 'Send >' is below it, slightly to right of center. */
+    width: 400px; /* match bubble width */
+    margin-left: auto; 
+    margin-right: auto;
+    justify-content: flex-end; 
+}
+
+.send-pill {
+    background: rgba(229, 231, 235, 0.9);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-right {
+  width: 350px;
+  border-left: 1.5px solid #000;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 40px;
+}
+
+.dropdown-pill {
+    background: rgba(229, 231, 235, 0.9);
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.avatar-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid white;
+    background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150') center/cover no-repeat;
+}
