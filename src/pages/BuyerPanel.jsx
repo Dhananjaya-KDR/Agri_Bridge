@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, ChevronUp, Send, Bell } from 'lucide-react';
+import { ChevronDown, ChevronUp, Send, Bell, MapPin } from 'lucide-react';
 
 const BuyerPanel = () => {
   const [message, setMessage] = useState('');
@@ -146,6 +146,49 @@ const BuyerPanel = () => {
       }
   };
 
+  const handleSendLocation = () => {
+    if (!selectedFarmer) return;
+
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        const locationUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+        
+        try {
+            const response = await fetch('http://localhost:5000/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    sender_id: currentUserId,
+                    receiver_id: selectedFarmer.id, // Fixed typo from 'slectedBuyer' logic
+                    content: locationUrl,
+                    type: 'location'
+                })
+            });
+
+            if (response.ok) {
+                 const newItem = {
+                    sender_id: currentUserId,
+                    receiver_id: selectedFarmer.id,
+                    content: locationUrl,
+                    type: 'location',
+                    timestamp: new Date().toISOString()
+                };
+                setMessages([...messages, newItem]);
+            }
+        } catch (error) {
+            console.error("Error sending location", error);
+        }
+    }, (error) => {
+        console.error("Error getting location", error);
+        alert("Unable to retrieve your location");
+    });
+  };
+
   return (
     <div className="panel-container">
       {/* Left / Main Chat Area */}
@@ -260,7 +303,24 @@ const BuyerPanel = () => {
                                 <div style={{ fontWeight: 'bold', fontSize: '0.8rem', marginBottom: '4px', opacity: 0.7 }}>
                                     {isMe ? 'You' : selectedFarmer.name}
                                 </div>
-                                {msg.content}
+                                {msg.type === 'location' ? (
+                                    <a 
+                                        href={msg.content} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        style={{ 
+                                            color: isMe ? '#065f46' : '#0ea5e9', 
+                                            textDecoration: 'underline',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '5px'
+                                        }}
+                                    >
+                                        <MapPin size={16} /> View Location
+                                    </a>
+                                ) : (
+                                    msg.content
+                                )}
                             </div>
                         );
                     })
@@ -289,8 +349,11 @@ const BuyerPanel = () => {
                         boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
                     }}
                 />
+                <button className="send-pill" onClick={handleSendLocation} style={{ width: 'auto', padding: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Share Location">
+                    <MapPin size={20} color="white" />
+                </button>
                 <button className="send-pill" onClick={handleSendMessage} style={{ width: 'auto', padding: '15px 30px' }}>
-                    Send <Send size={20} fill="black" />
+                    Send <Send size={20} fill="white" />
                 </button>
             </div>
         )}

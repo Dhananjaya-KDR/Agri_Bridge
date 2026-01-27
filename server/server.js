@@ -75,9 +75,9 @@ app.post('/api/login', (req, res) => {
 
 // Send Message
 app.post('/api/messages', (req, res) => {
-    const { sender_id, receiver_id, content } = req.body;
-    const sql = 'INSERT INTO messages (sender_id, receiver_id, content) VALUES (?, ?, ?)';
-    const params = [sender_id, receiver_id, content];
+    const { sender_id, receiver_id, content, type = 'text' } = req.body;
+    const sql = 'INSERT INTO messages (sender_id, receiver_id, content, type) VALUES (?, ?, ?, ?)';
+    const params = [sender_id, receiver_id, content, type];
     
     db.run(sql, params, function(err) {
         if (err) {

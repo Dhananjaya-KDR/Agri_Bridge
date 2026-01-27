@@ -219,7 +219,7 @@ body {
 }
 
 .send-pill {
-    background: rgba(229, 231, 235, 0.9);
+    background: #1f2937;
     padding: 8px 24px;
     border-radius: 50px;
     font-weight: bold;
@@ -230,7 +230,13 @@ body {
     font-family: sans-serif;
     font-size: 1.2rem;
     border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    color: white;
+    transition: background 0.2s;
+}
+
+.send-pill:hover {
+    background: #111827;
 }
 
 .sidebar-right {
