@@ -1,26 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-green: #2F855A;
+  --secondary-green: #48BB78;
+  --dark-green: #22543D;
+  --light-green: #F0FFF4;
+  --text-dark: #1A202C;
+  --text-light: #718096;
+  --white: #ffffff;
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: #000;
-  background-color: #ffffff;
+  color-scheme: light;
+  color: var(--text-dark);
+  background-color: var(--white);
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  /* Green gradient background from images */
-  background: linear-gradient(180deg, #34d399 0%, #a7f3d0 100%);
-  background-attachment: fixed;
+  background-color: var(--white);
+  overflow-x: hidden;
 }
 
 #root {
@@ -30,52 +40,63 @@ body {
   flex-direction: column;
 }
 
-/* Reusable Classes */
+/* --- Layout Utilities --- */
 .page-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
   width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  position: relative;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dark-green);
+  line-height: 1.2;
 }
 
 .title-text {
-  font-family: "Times New Roman", Times, serif; /* Matching the serif look */
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  color: black;
-  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin-bottom: 1rem;
 }
 
 .subtitle-text {
-    font-family: sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.5em;
-    font-size: 1rem;
-    margin-top: -1.5rem;
-    margin-bottom: 2rem;
-    color: #333;
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
-/* Buttons */
+/* --- Buttons --- */
 .btn {
-  border: none;
-  padding: 12px 24px;
-  border-radius: 50px; /* Pill shape */
-  font-size: 1.1rem;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  width: 100%;
-  max-width: 300px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  text-align: center;
-  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 1rem;
+  text-decoration: none;
 }
 
 .btn:active {
@@ -83,189 +104,187 @@ body {
 }
 
 .btn-primary {
-  background: #d1d5db; /* Light grey */
-  color: #000;
+  background-color: var(--primary-green);
+  color: white;
+  box-shadow: 0 4px 6px rgba(47, 133, 90, 0.2);
 }
+
 .btn-primary:hover {
-  background: #9ca3af;
+  background-color: var(--dark-green);
+  box-shadow: 0 6px 8px rgba(47, 133, 90, 0.3);
 }
 
-.btn-gold {
-  /* Gradient for "Continue" button */
-  background: linear-gradient(90deg, #fcd34d 0%, #ca8a04 100%);
-  color: #000;
+.btn-secondary {
+  background-color: #E2E8F0;
+  color: var(--text-dark);
 }
 
-/* Inputs */
+.btn-secondary:hover {
+  background-color: #CBD5E0;
+}
+
+.btn-accent {
+  background-color: #D6BCFA; /* Example accent */
+  color: var(--dark-green);
+}
+
+/* --- Inputs --- */
 .input-field {
   width: 100%;
-  max-width: 300px;
-  background: rgba(229, 231, 235, 0.8); /* Light grey transparent */
-  border: none;
-  padding: 15px 20px;
-  border-radius: 50px;
+  max-width: 400px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  background: var(--white);
   font-size: 1rem;
-  margin-bottom: 1rem;
-  color: #000;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
   outline: none;
-  text-align: center; /* Centered text as per mockup */
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
+
+.input-field:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(47, 133, 90, 0.1);
+}
+
 .input-field::placeholder {
-  color: #6b7280;
-  font-weight: 600;
+  color: #A0AEC0;
 }
 
-/* Layout Utilities */
-.flex-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* --- Navbar --- */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-}
-
-.gap-4 {
-  gap: 1rem;
-}
-
-.social-icons {
+  padding: 1.5rem 3rem;
   display: flex;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.icon-box {
-  background: white;
-  padding: 8px;
-  border-radius: 12px;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  z-index: 50;
+  background: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--dark-green);
+  text-decoration: none;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
 }
-.icon-box:hover {
-  transform: translateY(-2px);
+.nav-link:hover { color: var(--primary-green); }
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 5%; /* Align left like design */
+  overflow: hidden;
+  background-color: #F0FFF4; /* Fallback */
 }
 
-.splash-border {
-  border: 1px solid #3b82f6; /* Blue border from mockup */
-  padding: 40px;
-  width: 80%;
-  max-width: 400px;
-  height: 60vh;
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 50%;
+  padding: 2rem;
+}
+
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%; 
+  height: 100%;
+  z-index: 1;
+  /* Mask gradient for smooth blending */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+  mask-image: linear-gradient(to right, transparent, black 20%);
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Cards --- */
+.features-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 20px;
+  width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  text-align: center;
+  transition: transform 0.3s;
+  cursor: pointer;
 }
 
-/* Chat Specific Styles */
-.panel-container {
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card.large {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(47, 133, 90, 0.15);
+  border: 1px solid #C6F6D5;
+}
+
+.feature-card.large:hover {
+  transform: scale(1.1) translateY(-5px);
+}
+
+.feature-icon-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
   display: flex;
-  width: 100%;
-  height: 100vh;
-  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
   overflow: hidden;
 }
 
-.chat-area {
-  flex: 1;
+.feature-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-green);
+}
+
+.feature-card p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* --- Social Icons --- */
+.social-icons-row {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
   padding: 2rem;
-  position: relative;
-}
-
-.chat-area-header {
-  position: absolute;
-  top: 60px;
-  left: 100px;
-}
-
-.chat-bubble-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 20px;
-}
-
-.chat-bubble {
-    background: rgba(229, 231, 235, 0.8);
-    border-radius: 20px;
-    padding: 2rem;
-    width: 400px;
-    height: 250px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    color: #6b7280;
-    font-weight: 600;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.send-btn-container {
-    display: flex;
-    justify-content: flex-end; /* Or center? Mockup put it below bubble to the right aligned with bubble edge? */
-    /* Looking at image 3: bubble is somewhat centered. button 'Send >' is below it, slightly to right of center. */
-    width: 400px; /* match bubble width */
-    margin-left: auto; 
-    margin-right: auto;
-    justify-content: flex-end; 
-}
-
-.send-pill {
-    background: #1f2937;
-    padding: 8px 24px;
-    border-radius: 50px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-family: sans-serif;
-    font-size: 1.2rem;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    color: white;
-    transition: background 0.2s;
-}
-
-.send-pill:hover {
-    background: #111827;
-}
-
-.sidebar-right {
-  width: 350px;
-  border-left: 1.5px solid #000;
-  display: flex;
-  flex-direction: column;
-  padding: 80px 40px;
-}
-
-.dropdown-pill {
-    background: rgba(229, 231, 235, 0.9);
-    padding: 12px 24px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.avatar-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid white;
-    background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150') center/cover no-repeat;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }

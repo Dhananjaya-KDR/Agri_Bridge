@@ -39,6 +39,19 @@ const db = new sqlite3.Database('./agribridge.db', (err) => {
         });
       }
     });
+
+    db.run(`CREATE TABLE IF NOT EXISTS notifications (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            message TEXT,
+            type TEXT DEFAULT 'info',
+            is_read INTEGER DEFAULT 0,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`, (err) => {
+      if (err) {
+        console.error('Error creating notifications table:', err.message);
+      }
+    });
   }
 });
 

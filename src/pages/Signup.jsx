@@ -51,12 +51,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="page-container">
+    <div className="page-container flex-center" style={{ background: '#f7fafc' }}>
       <h1 className="title-text" style={{ fontSize: '3rem', marginBottom: '2rem', textShadow: '0 4px 4px rgba(0,0,0,0.3)' }}>
         Sign up
       </h1>
 
-      <div className="flex-col gap-4">
+      <div className="flex-col gap-4" style={{ alignItems: 'center', background: 'white', padding: '3rem', borderRadius: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)' }}>
         <input 
             name="email"
             type="email" 

@@ -40,12 +40,12 @@ const Login = () => {
   };
 
   return (
-    <div className="page-container">
+    <div className="page-container flex-center" style={{ background: '#f7fafc' }}>
       <h1 className="title-text" style={{ fontSize: '3rem', marginBottom: '3rem', textShadow: '0 4px 4px rgba(0,0,0,0.3)' }}>
         LOG IN
       </h1>
 
-      <div className="flex-col gap-4">
+      <div className="flex-col gap-4" style={{ alignItems: 'center', background: 'white', padding: '3rem', borderRadius: '20px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)' }}>
         <input 
             type="text" 
             placeholder="User name" 

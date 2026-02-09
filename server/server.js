@@ -71,6 +71,25 @@ app.post('/api/login', (req, res) => {
     });
 });
 
+// Social Login Check
+app.post('/api/social-login', (req, res) => {
+    const { email } = req.body;
+    const sql = "SELECT * FROM users WHERE email = ?";
+    db.get(sql, [email], (err, row) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        if (row) {
+            res.json({
+                message: "success",
+                user: row
+            });
+        } else {
+            res.status(404).json({ error: "User not found" });
+        }
+    });
+});
+
 // --- Chat APIs ---
 
 // Send Message
@@ -149,6 +168,56 @@ app.post('/api/messages/mark-read', (req, res) => {
             return res.status(400).json({ error: err.message });
         }
         res.json({ message: 'success', changes: this.changes });
+    });
+});
+
+// --- Notification APIs ---
+
+// Create Notification
+app.post('/api/notifications', (req, res) => {
+    const { user_id, message, type = 'info' } = req.body;
+    const sql = 'INSERT INTO notifications (user_id, message, type) VALUES (?, ?, ?)';
+    db.run(sql, [user_id, message, type], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.json({ message: 'success', id: this.lastID });
+    });
+});
+
+// Get Notifications for User
+app.get('/api/notifications/:userId', (req, res) => {
+    const { userId } = req.params;
+    const sql = 'SELECT * FROM notifications WHERE user_id = ? ORDER BY created_at DESC';
+    db.all(sql, [userId], (err, rows) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.json({ data: rows });
+    });
+});
+
+// Get Unread Notification Count
+app.get('/api/notifications/unread-count/:userId', (req, res) => {
+    const { userId } = req.params;
+    const sql = 'SELECT COUNT(*) as count FROM notifications WHERE user_id = ? AND is_read = 0';
+    db.get(sql, [userId], (err, row) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.json({ count: row.count });
+    });
+});
+
+// Mark Notification as Read
+app.post('/api/notifications/mark-read', (req, res) => {
+    const { id } = req.body;
+    const sql = 'UPDATE notifications SET is_read = 1 WHERE id = ?';
+    db.run(sql, [id], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.json({ message: 'success' });
     });
 });
 
