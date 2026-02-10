@@ -50,9 +50,9 @@ const Welcome = () => {
             I will set it to display: flex just to be visible, or use the class */}
         <div className="nav-links" style={{ display: 'flex' }}> 
           <span className="nav-link">Home</span>
-          <span className="nav-link">About Us</span>
-          <span className="nav-link">Features</span>
-          <span className="nav-link">Contact</span>
+          <span className="nav-link" onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>About Us</span>
+          <span className="nav-link" onClick={() => navigate('/features')} style={{ cursor: 'pointer' }}>Features</span>
+          <span className="nav-link" onClick={() => navigate('/contact')} style={{ cursor: 'pointer' }}>Contact</span>
         </div>
 
         <div style={{ display: 'flex', gap: '1rem' }}>
