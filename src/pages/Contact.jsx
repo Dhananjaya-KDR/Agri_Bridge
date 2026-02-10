@@ -23,7 +23,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="page-container" style={{ background: '#F0FFF4', minHeight: '100vh' }}>
+    <div className="page-container" style={{ background: '#C6F6D5', minHeight: '100vh' }}>
       
       {/* Navbar */}
       <nav className="navbar">
@@ -67,7 +67,7 @@ const Contact = () => {
                 left: 0, 
                 width: '100%', 
                 height: '100%', 
-                background: 'linear-gradient(180deg, #F0FFF4 0%, rgba(240, 255, 244, 0.8) 50%, #F0FFF4 100%)' 
+                background: 'linear-gradient(180deg, #C6F6D5 0%, rgba(198, 246, 213, 0.8) 50%, #C6F6D5 100%)' 
             }}></div>
         </div>
       </div>
@@ -79,7 +79,7 @@ const Contact = () => {
             
             {/* Contact Info */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                <div className="feature-card" style={{ flexDirection: 'row', alignItems: 'center', gap: '1.5rem', textAlign: 'left', padding: '1.5rem' }}>
+                <div className="feature-card" style={{ flexDirection: 'row', alignItems: 'center', gap: '1.5rem', textAlign: 'left', padding: '1.5rem', width: '100%' }}>
                     <div className="feature-icon-box" style={{ background: '#E6FFFA', margin: 0 }}>
                         <Mail color="#2F855A" size={24} />
                     </div>
@@ -89,7 +89,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="feature-card" style={{ flexDirection: 'row', alignItems: 'center', gap: '1.5rem', textAlign: 'left', padding: '1.5rem' }}>
+                <div className="feature-card" style={{ flexDirection: 'row', alignItems: 'center', gap: '1.5rem', textAlign: 'left', padding: '1.5rem', width: '100%' }}>
                     <div className="feature-icon-box" style={{ background: '#E6FFFA', margin: 0 }}>
                         <Phone color="#2F855A" size={24} />
                     </div>
@@ -99,7 +99,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="feature-card" style={{ flexDirection: 'row', alignItems: 'center', gap: '1.5rem', textAlign: 'left', padding: '1.5rem' }}>
+                <div className="feature-card" style={{ flexDirection: 'row', alignItems: 'center', gap: '1.5rem', textAlign: 'left', padding: '1.5rem', width: '100%' }}>
                     <div className="feature-icon-box" style={{ background: '#E6FFFA', margin: 0 }}>
                         <MapPin color="#2F855A" size={24} />
                     </div>

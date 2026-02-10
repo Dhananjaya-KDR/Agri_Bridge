@@ -7,7 +7,7 @@ const Features = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="page-container" style={{ background: '#F0FFF4', minHeight: '100vh' }}>
+    <div className="page-container" style={{ background: '#C6F6D5', minHeight: '100vh' }}>
       
       {/* Navbar */}
       <nav className="navbar">
@@ -51,7 +51,7 @@ const Features = () => {
                 left: 0, 
                 width: '100%', 
                 height: '100%', 
-                background: 'linear-gradient(180deg, #F0FFF4 0%, rgba(240, 255, 244, 0.8) 50%, #F0FFF4 100%)' 
+                background: 'linear-gradient(180deg, #C6F6D5 0%, rgba(198, 246, 213, 0.8) 50%, #C6F6D5 100%)' 
             }}></div>
         </div>
       </div>
